@@ -38,7 +38,7 @@ app.use(function(req, res, next) {
 });
 
 // Connect to MongoDB
-mongoose.connect(process.env.database);
+mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.once('open', function() {
 
   // Load the models.
