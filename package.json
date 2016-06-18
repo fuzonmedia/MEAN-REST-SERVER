@@ -1,0 +1,25 @@
+{
+  "name": "My Mean App",
+  "version": "1.0.0",
+  "description": "MEAN Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nil",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "body-parser": "^1.10.1",
+    "dotenv": "^2.0.0",
+    "express": "^4.11.0",
+    "jwt-simple": "^0.5.0",
+    "lodash": "^2.4.1",
+    "method-override": "^2.3.1",
+    "mongoose": "^4.0.6",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.0.0",
+    "resourcejs": "^0.1.18"
+  }
+}
