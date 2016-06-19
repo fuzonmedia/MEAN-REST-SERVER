@@ -6,12 +6,24 @@ var bcrypt = require('bcrypt');
 
 // set up a mongoose model
 var UserSchema = new Schema({
-  name: {
+  username: {
         type: String,
         unique: true,
         required: true
     },
   password: {
+        type: String,
+        required: true
+    },
+  name: {
+        type: String,
+        required: true
+    },
+  dob: {
+        type: Date,
+        required: false
+    },
+  country: {
         type: String,
         required: true
     }

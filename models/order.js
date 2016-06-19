@@ -1,20 +1,24 @@
 var mongoose = require('mongoose');
 
 // Create the MovieSchema.
-var MovieSchema = new mongoose.Schema({
-  title: {
+var OrderSchema = new mongoose.Schema({
+  OrderID: {
     type: String,
     required: true
   },
-  url: {
+  customerName: {
     type: String,
     required: true
   },
-  uid: {
+  amount: {
+    type: Number,
+    required: true
+  },
+  userID: {
     type: String,
     required: true
   }
 });
 
 // Export the model.
-module.exports = mongoose.model('movie', MovieSchema);
+module.exports = mongoose.model('Order', OrderSchema);

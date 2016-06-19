@@ -12,7 +12,7 @@ var apiRoutes = express.Router();
 // create a new user account (POST http://localhost:8080/signup)
 apiRoutes.post('/authenticate', function(req, res) {
   app.models.User.findOne({
-    name: req.body.name
+    username: req.body.username
   }, function(err, user) {
     if (err) throw err;
 

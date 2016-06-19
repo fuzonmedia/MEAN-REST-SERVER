@@ -1,12 +1,15 @@
 //load settings / config db settings .env file
 require('dotenv').config();
-
+var favicon = require('serve-favicon');
+var path = require('path');
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var _ = require('lodash');
-
+//template engine
+var expressLayouts = require('express-ejs-layouts');
+require('./assets/functions');
 // Set server port . require for deployment
 
 var port        = process.env.PORT || 8080;
@@ -18,6 +21,17 @@ var jwt         = require('jwt-simple');
 
 // Create the application.
 var app = express();
+
+// view engine setup
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(expressLayouts);
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Add Middleware necessary for REST API's
 app.use(bodyParser.urlencoded({extended: true}));

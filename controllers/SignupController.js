@@ -8,17 +8,20 @@ var apiRoutes = express.Router();
 
 // create a new user account (POST http://localhost:8080/signup)
 apiRoutes.post('/signup', function(req, res) {
-  if (!req.body.name || !req.body.password) {
-    res.json({success: false, msg: 'Please pass name and password.'});
+  if (!req.body.username || !req.body.password || !req.body.name || !req.body.country) {
+    res.json({success: false, msg: 'Please pass username , password , name , country '});
   } else {
     var newUser = new app.models.User({
+      username: req.body.username,
+      password: req.body.password,
       name: req.body.name,
-      password: req.body.password
+      dob: req.body.dob,
+      country: req.body.country,
     });
     // save the user
     newUser.save(function(err) {
       if (err) {
-        return res.json({success: false, msg: 'Username already exists.'});
+        return res.json({success: false, msg: 'Username already exists.' , err : err});
       }
       res.json({success: true, msg: 'Successful created new user.'});
     });

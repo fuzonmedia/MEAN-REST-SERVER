@@ -12,16 +12,19 @@ var apiRoutes = express.Router();
 apiRoutes.get('/memberinfo', passport.authenticate('jwt', { session: false}), function(req, res) {
   var token = getToken(req.headers);
   if (token) {
+    // Decode holds full json from the user table based on auth token
     var decoded = jwt.decode(token, process.env.secret);
+
+    // search for the unique usename & ignore password & objectID (users collections)
     app.models.User.findOne({
-      name: decoded.name
-    }, function(err, user) {
+      username: decoded.username
+    }, { password: 0, _id: 0 }, function(err, user) {
         if (err) throw err;
 
         if (!user) {
           return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
         } else {
-          res.json({success: true, msg: 'Welcome in the member area ' + user.name + '!'});
+          res.json({success: true, msg: 'Welcome in the member area ' + user.name + '!', result: user});
         }
     });
   } else {
@@ -29,18 +32,8 @@ apiRoutes.get('/memberinfo', passport.authenticate('jwt', { session: false}), fu
   }
 });
 
-getToken = function (headers) {
-  if (headers && headers.authorization) {
-    var parted = headers.authorization.split(' ');
-    if (parted.length === 2) {
-      return parted[1];
-    } else {
-      return null;
-    }
-  } else {
-    return null;
-  }
-};
+
+
 // connect the api routes under /*
 app.use('/', apiRoutes);
 // Return middleware.
