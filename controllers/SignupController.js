@@ -21,9 +21,9 @@ apiRoutes.post('/signup', function(req, res) {
     // save the user
     newUser.save(function(err) {
       if (err) {
-        return res.json({success: false, msg: 'Username already exists.' , err : err});
+        return res.json({success: false, msg: 'Username already exists.'});
       }
-      res.json({success: true, msg: 'Successful created new user.'});
+      res.json({success: true, msg: 'Successfully created new user.'});
     });
   }
 });

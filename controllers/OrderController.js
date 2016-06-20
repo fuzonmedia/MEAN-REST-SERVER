@@ -50,9 +50,9 @@ apiRoutes.post('/order', passport.authenticate('jwt', { session: false}), functi
     // save the Order
     neworder.save(function(err) {
       if (err) {
-        return res.status(400).send({success: false, msg: 'Error in Saving ' , error : err});
+        return res.status(400).send({success: false, msg: 'Invalid request' , error : err});
       }
-      return res.status(201).send({success: true, msg: 'Successful created new order.'});
+      return res.status(201).send({success: true, msg: 'Successfully created new order.'});
     });
   }
   else {
