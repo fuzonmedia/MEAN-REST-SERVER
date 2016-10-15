@@ -14,6 +14,10 @@ require('./assets/functions');
 
 var port        = process.env.PORT || 8080;
 
+// redis settings
+
+var redis = require("redis");
+
 // Auth passport
 var morgan      = require('morgan');
 var passport	= require('passport');
@@ -51,9 +55,24 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Redis Connect
+
+// For Local redis server
+//var RedisClient = redis.createClient(6379,process.env.REDISCLOUD_URL || "127.0.0.1");
+// For redis cloud lab (Via heroku)
+var RedisClient = redis.createClient(process.env.REDISCLOUD_URL || "127.0.0.1", {no_ready_check: true});
+RedisClient.on("error", function (err) {
+    console.log("Redis Error " + err);
+});
+
+RedisClient.on('connect', function() {
+    console.log('Connected to Redis server');
+    app.RedisClient=RedisClient;
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || process.env.database);
 mongoose.connection.once('open', function() {
+console.log("Connected with mongoDB");
 
   // Load the models.
   app.models = require('./models/index');
@@ -66,4 +85,5 @@ mongoose.connection.once('open', function() {
 
   console.log('Listening on port - ' + port);
   app.listen(port);
+});
 });

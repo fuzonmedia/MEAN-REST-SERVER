@@ -2,10 +2,11 @@ var express = require('express');
 var passport	= require('passport');
 var jwt        = require('jwt-simple');
 
-// pass passport for configuration
-require('../config/passport')(passport);
+
 
 module.exports = function(app, route) {
+// pass passport for configuration
+require('../config/passport')(passport,app);
 // bundle our routes
 var apiRoutes = express.Router();
 
@@ -24,6 +25,11 @@ apiRoutes.post('/authenticate', function(req, res) {
         if (isMatch && !err) {
           // if user is found and password is right create a token
           var token = jwt.encode(user, process.env.secret);
+
+          // Store token in redis server
+          app.RedisClient.sadd(process.env.redis_setsToken,token);
+          //console.log("Token Added in redis");
+
           // return the information including token as JSON
           res.json({success: true, token: 'JWT ' + token});
         } else {

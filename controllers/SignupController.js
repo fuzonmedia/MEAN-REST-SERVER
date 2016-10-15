@@ -1,8 +1,9 @@
 var express = require('express');
 var passport	= require('passport');
-// pass passport for configuration
-require('../config/passport')(passport);
+
 module.exports = function(app, route ) {
+// pass passport for configuration
+require('../config/passport')(passport,app);  
 // bundle our routes
 var apiRoutes = express.Router();
 
