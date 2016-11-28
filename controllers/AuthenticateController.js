@@ -28,7 +28,7 @@ apiRoutes.post('/authenticate', function(req, res) {
 
           // Store token in redis server
           app.RedisClient.sadd(process.env.redis_setsToken,token);
-          //console.log("Token Added in redis");
+          console.log("Token Added in redis");
 
           // return the information including token as JSON
           res.json({success: true, token: 'JWT ' + token});

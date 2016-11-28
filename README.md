@@ -6,11 +6,11 @@
 3. Full CRUD implementation
 4. Relation implementation with User & Order object
 5. Custom Callback , middleware , functions implemented
-7. Bootstrap , Template engine implemented
-8. EJS implemented
-9. Environment variable used (mongoDB , Redis)
-10. Ready to deploy for Heroku node server
-11. Used Redis for caching (speed up user authentication)
+6. Bootstrap , Template engine implemented
+7. EJS implemented
+8. Environment variable used (mongoDB , Redis)
+9. Ready to deploy for Heroku node server
+10. Used Redis for caching (speed up user authentication)
 
 Interactive REST API Doc : http://docs.restnodejs.apiary.io/
 

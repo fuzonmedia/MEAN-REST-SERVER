@@ -18,7 +18,7 @@ apiRoutes.get('/memberinfo', passport.authenticate('jwt', { session: false}), fu
         if (err) throw err;
 
         if (!user) {
-          return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
+          return res.status(401).send({success: false, msg: 'Authentication failed. User not found.'});
         } else {
           res.json({success: true, msg: 'Welcome in the member area ' + user.name + '!', result: user});
         }

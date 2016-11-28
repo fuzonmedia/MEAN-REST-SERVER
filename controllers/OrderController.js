@@ -14,7 +14,7 @@ apiRoutes.get('/order', passport.authenticate('jwt', { session: false}), functio
     app.models.Order.find({
       userID: req.user._id
     }, {userID:0}, function(err, data) {
-        if (err) return res.status(400).send({success: false, msg: 'Error request' , error: err});
+        if (err) return res.status(200).send({success: false, msg: 'Error request' , error: err});
 
         if (!data) {
           return res.status(200).send({success: false, msg: 'Details Not found'});
@@ -38,13 +38,13 @@ apiRoutes.post('/order', passport.authenticate('jwt', { session: false}), functi
     // save the Order
     neworder.save(function(err) {
       if (err) {
-        return res.status(400).send({success: false, msg: 'Invalid request' , error : err});
+        return res.status(200).send({success: false, msg: 'Invalid request' , error : err});
       }
-      return res.status(201).send({success: true, msg: 'Successfully created new order.'});
+      return res.status(200).send({success: true, msg: 'Successfully created new order.'});
     });
   }
   else {
-    return res.status(400).send({success: false, msg: 'Request Null'});
+    return res.status(200).send({success: false, msg: 'Request Null'});
   }
 
 });
@@ -55,7 +55,7 @@ apiRoutes.get('/order/:id', passport.authenticate('jwt', { session: false}), fun
       _id: req.params.id,
       userID: req.user._id
     }, {userID:0}, function(err, data) {
-        if (err) return res.status(400).send({success: false, msg: 'Invalid request '});
+        if (err) return res.status(200).send({success: false, msg: 'Invalid request '});
 
         if (!data) {
           return res.status(200).send({success: false, msg: 'Details Not found'});
@@ -75,7 +75,7 @@ apiRoutes.put('/order/:id', passport.authenticate('jwt', { session: false}), fun
       userID: req.user._id
     }, {$set:req.body}, {new: true,fields: {userID:0} ,runValidators: true}, function(err,newvalue) {
         //console.log(newvalue);
-        if (err) return res.status(400).send({success: false, msg: 'Invalid request'});
+        if (err) return res.status(200).send({success: false, msg: 'Invalid request'});
 
         if (!newvalue) {
           return res.status(200).send({success: false, msg: 'Details not found'});
@@ -85,7 +85,7 @@ apiRoutes.put('/order/:id', passport.authenticate('jwt', { session: false}), fun
     });
   }
   else {
-    return res.status(400).send({success: false, msg: 'Request Null'});
+    return res.status(200).send({success: false, msg: 'Request Null'});
   }
 });
 
@@ -95,7 +95,7 @@ apiRoutes.delete('/order/:id', passport.authenticate('jwt', { session: false}), 
       _id: req.params.id,
       userID: req.user._id
     } ,function(err, data) {
-        if (err) return res.status(400).send({success: false, msg: 'Invalid request '});
+        if (err) return res.status(200).send({success: false, msg: 'Invalid request '});
 
         if (!data) {
           return res.status(200).send({success: false, msg: 'Details Not found'});
