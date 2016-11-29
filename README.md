@@ -19,5 +19,12 @@ Deployed in Heroku https://rest-node-app.herokuapp.com/
 Note :
 Procfile is used to tell Heroku how to start that application . If you run this in localhost , you need not to use that file
 
-### what next ?
-Frontend Angular will be updated soon as separate application connected with REST API
+### Frontend web client source
+
+https://github.com/fuzonmedia/MEAN-Web-Client
+
+### Frontend web client demo
+
+https://mean-web-client.herokuapp.com/#/Login
+
+Login credential (niltest3/123456) or register here https://mean-web-client.herokuapp.com/#/register
