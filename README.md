@@ -28,3 +28,9 @@ https://github.com/fuzonmedia/MEAN-Web-Client
 https://mean-web-client.herokuapp.com/#/Login
 
 Login credential (niltest3/123456) or register here https://mean-web-client.herokuapp.com/#/register
+
+### Mobile client source (Ionic / Cordova)
+
+https://github.com/fuzonmedia/meanMobileClient
+
+Snapshots : http://youraddons.com/gallery/mean-mobile-client-ionic/
